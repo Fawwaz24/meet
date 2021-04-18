@@ -1,70 +1,114 @@
-# Getting Started with Create React App
+# meet-app
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+This app is a serverless, progressive web application (PWA) using React and a test-driven development (TDD) technique. 
+The application uses the Google Calendar API to fetch upcoming events.
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+FEATURE 1: FILTER EVENTS BY CITY
+Scenario 1: When user hasn’t searched for a city, show upcoming events from all cities.
+Scenario 2: User should see a list of suggestions when they search for a city.
+Scenario 3: User can select a city from the suggested list.
 
-### `yarn test`
+As a user
+I should be able to “filter events by city”
+So that I can see the list of events that take place in that city
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+SCENARIO 1: WHEN USER HASN’T SEARCHED FOR A CITY, SHOW UPCOMING EVENTS FROM ALL CITIES.
+Given user hasn’t searched for any city
+When the user opens the app
+Then the user should see a list of all upcoming events
 
-### `yarn build`
+SCENARIO 2: USER SHOULD SEE A LIST OF SUGGESTIONS WHEN THEY SEARCH FOR A CITY.
+Given the main page is open
+When user starts typing in the city textbox
+Then the user should see a list of cities (suggestions) that match what they’ve typed
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+SCENARIO 3: USER CAN SELECT A CITY FROM THE SUGGESTED LIST.
+Given the user was typing “Berlin” in the city textbox
+And the list of suggested cities is showing
+When the user selects a city (e.g., “Berlin, Germany”) from the list
+Then their city should be changed to that city (i.e., “Berlin, Germany”)
+And the user should receive a list of upcoming events in that city
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+FEATURE 2: SHOW/HIDE AN EVENT'S DETAILS
+Scenario 1: An event element is collapsed by default
+Scenario 2: User can expand an event to see its details
+Scenario 3: User can collapse an event to hide its details
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+As a user
+I should be able to “show and hide the events detail”
+So that I have an option to expand or collapse the detail information of an event
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+SCENARIO 1: An event element is collapsed by default 
+Given event detail is collapsed
+When the user opens the event details
+Then the user can expand the event detail anytime.
+ 
+SCENARIO 2: User can expand an event to see its details
+Given the event detail is hidden
+When user click the event 
+Then the user should see a detailed information about the event.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+SCENARIO 3: User can collapse an event to hide its details.
+Given the event detail is hidden
+When the user clicks the collapse button or the event itself.
+Then the event element will be collapsed to see the detail information about that specific event
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+FEATURE 3: SPECIFY NUMBER OF EVENTS
+Scenario 1: When user hasn’t specified a number, 32 is the default number.
+Scenario 2: User can change the number of events they want to see.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+As a user
+I should be able to “specify the number of events”
+So that I have a choice to view how many numbers of event I want to display.
 
-### Code Splitting
+SCENARIO 1: When user hasn’t specified a number, 32 is the default number
+Given the main page is open and the user hasn’t specified a number in the “Number of Events” field
+When the user opens the event page
+Then the user must view 32 events listed on the page by default.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+SCENARIO 2: User can change the number of events they want to see
+Given can change number of lists to view
+When the user opens the event page
+Then the user can change or type on the input box any number of list of events to view.
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+FEATURE 4: USE THE APP WHEN OFFLINE
+Scenario 1: Show cached data when there’s no internet connection.
+Scenario 2: Show error when user changes the settings (city, time range).
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+As a user
+I should be able to “use the app when offline”
+So that I can access the application without the internet.
 
-### Advanced Configuration
+SCENARIO 1: Show cached data when there’s no internet connection
+Given show cached data without internet connection
+When the user opens the application
+Then the user can view the data saved in the cached.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+SCENARIO 2: Show error when user changes the settings (city, time range)
+Given show an error when settings change
+When the user changes any settings (city, time range)
+Then the app will show an error to the user that you must connect to internet, before changing the settings
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `yarn build` fails to minify
+FEATURE 5: DATA VISUALIZATION
+Scenario 1: Show a chart with the number of upcoming events in each city.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+As a user
+I should be able to “visualize the data of events”
+So that I have the means to explore the data and uncover deep insights.
+
+SCENARIO 1: Show a chart with the number of upcoming events in each city.
+Given Show a chart with the number of upcoming events in each city
+When the user goes to data visualization page 
+Then the app will show a graph or chart that have the number of events of the city.
